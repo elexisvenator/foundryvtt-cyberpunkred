@@ -107,6 +107,10 @@ Hooks.once('init', async function () {
     return "_RollNPC " + command;
   });
 
+  Handlebars.registerHelper('rollIce', function (command) {
+    return "_RollIce " + command;
+  });
+
   Handlebars.registerHelper('RollWithMods', function (formula) {
     return "_RollWithMods " + formula;
   });

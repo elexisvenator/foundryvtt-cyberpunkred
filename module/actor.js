@@ -576,6 +576,38 @@ export class cyberpunkredActor extends Actor {
       tags: tags
     }
   }
+  
+  rollIce(command) {
+    var rollArray = new Array();
+    var tags = new Array();
+    var data = this.data.data;
+
+    switch (command) {
+      case 'ambush':
+        rollArray.push(data.iceattributes.ice_spd.value)
+        tags.push(`${game.i18n.localize("CPRED.ice_spd")}: ${data.iceattributes.ice_spd.value}`)
+        break;
+      case 'block':
+        rollArray.push(data.iceattributes.ice_per.value)
+        tags.push(`${game.i18n.localize("CPRED.ice_per")}: ${data.iceattributes.ice_per.value}`)
+        break;
+      case 'attack':
+        rollArray.push(data.iceattributes.ice_atk.value)
+        tags.push(`${game.i18n.localize("CPRED.ice_atk")}: ${data.iceattributes.ice_atk.value}`)
+        break;
+      case 'defend':
+        rollArray.push(data.iceattributes.ice_def.value)
+        tags.push(`${game.i18n.localize("CPRED.ice_def")}: ${data.iceattributes.ice_def.value}`)
+        break;
+                
+      default:
+        throw `Unknown command '${command}'`;
+    }
+    return {
+      rollArray: rollArray,
+      tags: tags
+    }
+  }
 
   rollNetrunner(command) {
     var rollArray = new Array();
@@ -718,6 +750,10 @@ export class cyberpunkredActor extends Actor {
         break;
       case '_RollNPC':
         rollObject = this.rollNPC(cmdId);
+        needsMods = false;
+        break;
+      case '_RollIce':
+        rollObject = this.rollIce(cmdId);
         needsMods = false;
         break;
       default:

@@ -1,0 +1,83 @@
+{{!-- After a migration, data may not be prepared. This handles that case. --}} {{#unless data.backend.dataprepcomplete}}
+<form class="{{cssClass}} flexcol cprgraphics" autocomplete="off">
+  {{localize "CPRED.simpletoggleex"}}<br /><br />
+  <input class="settings" type="checkbox" id="set_simpletoggle" name="data.backend.simpletoggle" {{checked data.backend.simpletoggle}} />
+  <label class="cpr-center settings-item settings clickable" for="set_simpletoggle">{{localize "CPRED.simpletoggle"}}</label>
+</form>
+{{/unless}}
+
+<form class="{{cssClass}} flexcol cprgraphics" autocomplete="off">
+  {{#if data.backend.dataprepcomplete}}
+
+  <div class="cpr-grid">
+    {{!--Top Header --}}
+    <div class="cpr-header">
+      <div class="grid grid-2col">
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+        <input name="role" type="text" value="{{data.description.role}}" placeholder="Role" />
+      </div>
+    </div>
+    {{!-- Navigation Sidebar --}}
+    <div class="cpr-nav sheet-tabs cprgraphics" data-group="primary">
+      <div class="cpr-nav-item">
+        <a class="item" data-tab="biography">{{localize "CPRED.bio"}}</a>
+      </div>
+      <br />
+      <div class="cpr-nav-item">
+        <a class="item" data-tab="statstab">Stats</a>
+      </div>
+    </div>
+    <div class="cpr-content cprgraphics">
+      {{!-- Biography Tab --}}
+      <div class="tab roomtoedit cprgraphics" data-group="primary" data-tab="biography">
+        {{editor content=data.description.biography target="data.description.biography" button=true owner=owner editable=editable}}
+      </div>
+
+      {{!-- Rolls Buttons Tab --}}
+      <div class="tab rolls cprgraphics" data-group="primary" data-tab="statstab">
+        <h3>STATS</h3>
+        <div class="atrnskill-grid">
+          <label>{{localize "CPRED.attribute"}}</label>
+          <label>{{localize "CPRED.base"}}</label>
+          <label></label>
+          <label></label>
+          <label></label>
+          {{#each data.iceattributes as |attr key|}}
+          <label for="data.attributes.{{key}}.value">{{localize (concat "CPRED." key)}}</label>
+          <input type="text" name="data.iceattributes.{{key}}.value" value="{{attr.value}}" data-dtype="Number" />
+          <label></label>
+          <label></label>
+          <label></label>
+          {{/each}}
+        </div>
+        <div class="combatstats grid grid-2col">
+          <div class="resource flex-group-center">
+            <label for="data.rez.value" class="resource-label">REZ</label>
+            <div class="resource-content flexrow flex-center flex-between">
+              <input type="text" name="data.rez.value" value="{{data.rez.value}}" data-dtype="Number" />
+              <span>&nbsp;<strong>/</strong>&nbsp;</span>
+              <input type="text" name="data.rez.max" value="{{data.rez.max}}" data-dtype="Number" />
+            </div>
+          </div>
+          <div class="resource flex-group-center">
+            <label for="data.damage" class="resource-label">DAMAGE</label>
+            <div class="resource-content flexrow flex-center flex-between">
+              <input type="text" name="data.damage" value="{{data.damage}}" />
+            </div>
+          </div>
+        </div>
+        <h3>Actions</h3>
+        <div class="npc-basic-box">
+          <div class="npc-button-array">
+            <button style="width: 131px" data-roll="{{rollIce 'ambush'}}" data-label="Ambush" class="npcrollable">Ambush</button>
+            <button style="width: 131px" data-roll="{{rollIce 'block'}}" data-label="Block Slide" class="npcrollable">Block Slide</button>
+            <button style="width: 131px" data-roll="{{rollIce 'attack'}}" data-label="Attack" class="npcrollable">Attack</button>
+            <button style="width: 131px" data-roll="{{rollIce 'defend'}}" data-label="Defend" class="npcrollable">Defend</button>
+            <button style="width: 131px" data-roll="{{rollDamage data.damage}}" data-label="Damage" class="npcrollable">Damage</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{{/if}}

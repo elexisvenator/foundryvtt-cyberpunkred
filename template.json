@@ -1,13 +1,16 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": [
+      "character",
+      "npc",
+      "blackice"
+    ],
     "templates": {
       "backend": {
         "backend": {
           "simpletoggle": false
         }
       },
-
       "description": {
         "description": {
           "role": "Character role",
@@ -20,7 +23,6 @@
           "playernotes": "Any notes you want to keep..."
         }
       },
-
       "combatstats": {
         "combatstats": {
           "healthpool": {
@@ -67,11 +69,9 @@
           }
         }
       },
-
       "humanityarray": {
         "humanityarray": []
       },
-
       "combatsetup": {
         "weaponsetup": {
           "weapon1": {
@@ -135,7 +135,6 @@
             "type": "Pistol"
           }
         },
-
         "armorsetup": {
           "armorhead": {
             "name": "Armor Type...",
@@ -157,7 +156,6 @@
           }
         }
       },
-
       "attributes": {
         "attributes": {
           "int": {
@@ -232,7 +230,38 @@
           }
         }
       },
-
+      "iceattributes": {
+        "iceattributes": {
+          "ice_per": {
+            "value": 0,
+            "mod": 0,
+            "itemmod": 0,
+            "roll": 0,
+            "sort": "ice_per"
+          },
+          "ice_spd": {
+            "value": 0,
+            "mod": 0,
+            "itemmod": 0,
+            "roll": 0,
+            "sort": "ice_spd"
+          },
+          "ice_atk": {
+            "value": 0,
+            "mod": 0,
+            "itemmod": 0,
+            "roll": 0,
+            "sort": "ice_atk"
+          },
+          "ice_def": {
+            "value": 0,
+            "mod": 0,
+            "itemmod": 0,
+            "roll": 0,
+            "sort": "ice_def"
+          }
+        }
+      },
       "skills": {
         "skills": {
           "athletics": {
@@ -643,11 +672,8 @@
             "itemmod": 0,
             "roll": 0
           }
-
-
         }
       },
-
       "npc": {
         "npc": {
           "npc1": {
@@ -702,85 +728,69 @@
           }
         }
       },
-
       "modifiers": {
         "modifiers": {
           "modhalfdam": {
             "penalty": -3,
             "checked": false
           },
-
           "modfulldam": {
             "penalty": -2,
             "checked": false
           },
-
           "modfacedown": {
             "penalty": -3,
             "checked": false
           },
-
           "modheadshot": {
             "penalty": -8,
             "checked": false
           },
-
           "modunfamiliarequipment": {
             "penalty": -4,
             "checked": false
           },
-
           "modnoinstructions": {
             "penalty": -2,
             "checked": false
           },
-
           "modwrongtools": {
             "penalty": -2,
             "checked": false
           },
-
           "modcomplextask": {
             "penalty": -3,
             "checked": false
           },
-
           "modneverdonebefore": {
             "penalty": -1,
             "checked": false
           },
-
           "modunderattack": {
             "penalty": -3,
             "checked": false
           },
-
           "moddrunkdruggedtired": {
             "penalty": -4,
             "checked": false
           },
-
           "modsecretly": {
             "penalty": -4,
             "checked": false
           },
-
           "moddarkobscured": {
             "penalty": -4,
             "checked": false
           },
-
           "modmanualmod": {
             "penalty": 0
           },
-
           "modfinalmod": {
             "totalpenalty": 0,
             "healthpenalty": 0
           }
         }
       },
-
       "settings": {
         "settings": {
           "role": {
@@ -807,7 +817,6 @@
           }
         }
       },
-
       "roleskills": {
         "roleskills": {
           "netrunner": {
@@ -906,14 +915,63 @@
       }
     },
     "character": {
-      "templates": ["humanityarray", "backend", "description", "combatstats", "attributes", "skills", "combatsetup", "modifiers", "settings", "roleskills"]
+      "templates": [
+        "humanityarray",
+        "backend",
+        "description",
+        "combatstats",
+        "attributes",
+        "skills",
+        "combatsetup",
+        "modifiers",
+        "settings",
+        "roleskills"
+      ]
     },
     "npc": {
-      "templates": ["humanityarray", "backend", "description", "combatstats", "attributes", "skills", "combatsetup", "modifiers", "settings", "roleskills", "npc"]
+      "templates": [
+        "humanityarray",
+        "backend",
+        "description",
+        "combatstats",
+        "attributes",
+        "skills",
+        "combatsetup",
+        "modifiers",
+        "settings",
+        "roleskills",
+        "npc"
+      ]
+    },
+    "blackice": {
+      "templates": [
+        "humanityarray",
+        "backend",
+        "description",
+        "combatstats",
+        "attributes",
+        "skills",
+        "combatsetup",
+        "modifiers",
+        "settings",
+        "roleskills",
+        "npc",
+        "iceattributes"
+      ],
+      "damage": "3d6",
+      "rez": {
+        "min": 0,
+        "value": 0,
+        "max": 10
+      }
     }
   },
   "Item": {
-    "types": ["cyberware", "weapons", "gear"],
+    "types": [
+      "cyberware",
+      "weapons",
+      "gear"
+    ],
     "templates": {
       "general": {
         "price": {
@@ -1032,13 +1090,24 @@
       }
     },
     "weapons": {
-      "templates": ["general", "weapon", "modlist"]
+      "templates": [
+        "general",
+        "weapon",
+        "modlist"
+      ]
     },
     "cyberware": {
-      "templates": ["general", "cyberware", "modlist"]
+      "templates": [
+        "general",
+        "cyberware",
+        "modlist"
+      ]
     },
     "gear": {
-      "templates": ["general", "modlist"]
+      "templates": [
+        "general",
+        "modlist"
+      ]
     }
   }
 }
